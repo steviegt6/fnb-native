@@ -26,7 +26,7 @@ jobs:
                   unzip "$z" -d "${z%.zip}"
                   rm "$z"
                 done
-
+                ls
                 for d in */ ; do
                     mkdir ${d}native ;
                     mv ${d}fnb-native* ${d}native/ ;
