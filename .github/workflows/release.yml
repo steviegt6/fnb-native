@@ -20,6 +20,8 @@ jobs:
                 out-file-path: package/build/runtimes
             - name: Folder structure
               run: |
+                cd package/build/runtimes
+
                 for z in *.zip ; do
                   unzip "$z" -d "${z%.zip}"
                   rm "$z"
@@ -39,4 +41,4 @@ jobs:
             - name: Publish the package to GPR
               run: dotnet nuget push pkg/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/steviegt6/index.json --skip-duplicate
             - name: Publish the package to NuGet
-              run: dotnet nuget push pkg/*.nupkg -k ${{ secrets.LIBDEFLATE_NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json --skip-duplicate
+              run: dotnet nuget push pkg/*.nupkg -k ${{ secrets.FNB_NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json --skip-duplicate
