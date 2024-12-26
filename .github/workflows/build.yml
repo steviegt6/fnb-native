@@ -37,7 +37,6 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: linux-arm64
-                p
                 if-no-files-found: error
             - name: Upload artifact (x64 Windows)
               uses: actions/upload-artifact@v4
