@@ -1,0 +1,8 @@
+fnb-native
+==========
+
+Native auxiliary library for Tomat.FNB
+
+This is a companion repository for <https://github.com.steviegt6/fnb>.  It is
+licensed under the same source license as fnb and exists for separate GitHub
+actions.
