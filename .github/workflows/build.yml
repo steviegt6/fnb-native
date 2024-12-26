@@ -2,7 +2,7 @@ name: Build targets
 on:
     workflow_dispatch:
 jobs:
-    build-linux-and-windows:
+    build-linux:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -25,12 +25,6 @@ jobs:
               run: cross build --release --target i686-unknown-linux-gnu
             - name: Build arm64 Linux
               run: cross build --release --target aarch64-unknown-linux-gnu
-            - name: Build x64 windows
-              run: cross build --release --target x86_64-pc-windows-msvc
-            - name: Build x86 windows
-              run: cross build --release --target i686-pc-windows-msvc
-            - name: Build arm64 windows
-              run: cross build --release --target aarch64-pc-windows-msvc
             - name: Upload artifact (x64 Linux)
               uses: actions/upload-artifact@v4
               with:
@@ -48,6 +42,22 @@ jobs:
               with:
                 name: linux-arm64
                 if-no-files-found: error
+    build-windows:
+        runs-on: windows-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Install Rust targets
+              run: |
+                rustup target add x86_64-pc-windows-msvc
+                rustup target add i686-pc-windows-msvc
+                rustup target add aarch64-pc-windows-msvc
+            - name: Build x64 Windows
+              run: cargo build --release --target x86_64-pc-windows-msvc
+            - name: Build x86 Windows
+              run: cargo build --release --target i686-pc-windows-msvc
+            # - name: Build arm64 Windows
+            #   run: cargo build --release --target aarch64-pc-windows-msvc
             - name: Upload artifact (x64 Windows)
               uses: actions/upload-artifact@v4
               with:
@@ -60,12 +70,12 @@ jobs:
                 name: windows-x86
                 path: target/i686-pc-windows-msvc/release/fnb-native.dll
                 if-no-files-found: error
-            - name: Upload artifact (arm64 Windows)
-              uses: actions/upload-artifact@v4
-              with:
-                name: windows-arm64
-                path: target/aarch64-pc-windows-msvc/release/fnb-native.dl
-                if-no-files-found: error
+            # - name: Upload artifact (arm64 Windows)
+            #   uses: actions/upload-artifact@v4
+            #   with:
+            #     name: windows-arm64
+            #     path: target/aarch64-pc-windows-msvc/release/fnb-native.dl
+            #     if-no-files-found: error
 
     #windows-build:
     #    name: Build Windows (x64, x86, arm64)
