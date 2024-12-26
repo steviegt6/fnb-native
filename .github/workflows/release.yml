@@ -26,10 +26,9 @@ jobs:
                   unzip "$z" -d "${z%.zip}"
                   rm "$z"
 
-                ls linux_arm64
                 for d in */ ; do
                     mkdir ${d}native ;
-                    mv ${d}fnb-native* ${d}native/ ;
+                    mv ${d}fnb_native* ${d}native/ ;
                 done
             - name: Pack
               run: dotnet pack -c Release -o pkg
