@@ -1,0 +1,15 @@
+<package>
+    <metadata>
+        <id>Tomat.FNB.Native</id>
+        <version>1.0.0</version>
+        <authors>Tomat</authors>
+        <license type="expression">MIT</license>
+        <projectUrl>https://github.com/steviegt6/fnb-native</projectUrl>
+        <description>Native auxiliary library for Tomat.FNB</description>
+        <repository type="git" url="https://github.com/steviegt6/fnb-native"/>
+
+        <dependencies>
+            <group targetFramework="net9.0" />
+        </dependencies>
+    </metadata>
+</package>
