@@ -1,0 +1,42 @@
+name: Release
+on:
+    release:
+        types: [published, edited]
+    workflow_dispatch:
+jobs:
+    publish:
+        name: Publish release
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Download release binaries
+              uses: robinraju/release-downloader@v1.8
+              with:
+                releaseId: ${{ github.event.release.id }}
+                fileName: '*'
+                tarBall: false
+                zipBall: false
+                out-file-path: package/build/runtimes
+            - name: Folder structure
+              run: |
+                for z in *.zip ; do
+                  unzip "$z" -d "${z%.zip}"
+                  rm "$z"
+                done
+
+                for d in */ ; do
+                    mkdir ${d}native ;
+                    mv ${d}fnb-native* ${d}native/ ;
+                done
+            - name: Pack
+              run: dotnet pack -c Release -o pkg
+            - name: Upload
+              uses: actions/upload-artifact@v3
+              with:
+                name: fnb-native
+                path: pkg/*
+            - name: Publish the package to GPR
+              run: dotnet nuget push pkg/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/steviegt6/index.json --skip-duplicate
+            - name: Publish the package to NuGet
+              run: dotnet nuget push pkg/*.nupkg -k ${{ secrets.LIBDEFLATE_NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json --skip-duplicate
