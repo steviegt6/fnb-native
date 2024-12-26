@@ -41,6 +41,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: linux-arm64
+                path: target/aarch64-unknown-linux-gnu/release/libfnb_native.so
                 if-no-files-found: error
     build-windows:
         runs-on: windows-latest
@@ -62,13 +63,13 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: windows-x64
-                path: target/x86_64-pc-windows-msvc/release/fnb-native.dll
+                path: target/x86_64-pc-windows-msvc/release/fnb_native.dll
                 if-no-files-found: error
             - name: Upload artifact (x86 Windows)
               uses: actions/upload-artifact@v4
               with:
                 name: windows-x86
-                path: target/i686-pc-windows-msvc/release/fnb-native.dll
+                path: target/i686-pc-windows-msvc/release/fnb_native.dll
                 if-no-files-found: error
             # - name: Upload artifact (arm64 Windows)
             #   uses: actions/upload-artifact@v4
