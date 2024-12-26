@@ -6,7 +6,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
             - name: Install dependencies
               run: sudo apt-get install -y gcc-multilib
             - name: Build x64
@@ -22,37 +22,37 @@ jobs:
             - name: Build arm64 windows
               run: cargo build --release --target aarch64-pc-windows-msvc
             - name: Upload artifact (x64 Linux)
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                 name: linux-x64
                 path: target/x86_64-unknown-linux-gnu/release/libfnb_native.so
                 if-no-files-found: error
             - name: Upload artifact (x86 Linux)
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                 name: linux-x86
                 path: target/i686-unknown-linux-gnu/release/libfnb_native.so
                 if-no-files-found: error
             - name: Upload artifact (arm64 Linux)
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                 name: linux-arm64
-                path: target/aarch64-unknown-linux-gnu/release/libfnb_native.so
+                p
                 if-no-files-found: error
             - name: Upload artifact (x64 Windows)
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                 name: windows-x64
                 path: target/x86_64-pc-windows-msvc/release/fnb-native.dll
                 if-no-files-found: error
             - name: Upload artifact (x86 Windows)
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                 name: windows-x86
                 path: target/i686-pc-windows-msvc/release/fnb-native.dll
                 if-no-files-found: error
             - name: Upload artifact (arm64 Windows)
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                 name: windows-arm64
                 path: target/aarch64-pc-windows-msvc/release/fnb-native.dl
