@@ -1,2 +1,52 @@
 <Project>
+    <!-- Windows -->
+    <ItemGroup Condition=" '$(RuntimeIdentifier)' == '' AND '$(OS)' == 'Windows_NT' ">
+        <Content Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x86\native\fnb_native.dll">
+          <Link>runtimes\win-x86\native\fnb_native.dll</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>false</Pack>
+        </Content>
+        <Content Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x64\native\fnb_native.dll">
+          <Link>runtimes\win-x64\native\fnb_native.dll</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>false</Pack>
+        </Content>
+        <!-- <Content Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-arm64\native\fnb_native.dll">
+          <Link>runtimes\win-arm64\native\fnb_native.dll</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>false</Pack>
+        </Content> -->
+    </ItemGroup>
+
+    <!-- Linux -->
+    <ItemGroup Condition=" '$(RuntimeIdentifier)' == '' AND '$(OS)' == 'Unix' AND !Exists('/Library/Frameworks') ">
+        <Content Include="$(MSBuildThisFileDirectory)..\..\runtimes\linux-x86\native\libfnb_native.so">
+          <Link>runtimes\linux-x86\native\libfnb_native.so</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>false</Pack>
+        </Content>
+        <Content Include="$(MSBuildThisFileDirectory)..\..\runtimes\linux-x64\native\libfnb_native.so">
+          <Link>runtimes\linux-x64\native\libfnb_native.so</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>false</Pack>
+        </Content>
+        <!-- <Content Include="$(MSBuildThisFileDirectory)..\..\runtimes\linux-arm\native\libfnb_native.so">
+          <Link>runtimes\linux-arm\native\libfnb_native.so</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>false</Pack>
+        </Content> -->
+        <!-- <Content Include="$(MSBuildThisFileDirectory)..\..\runtimes\linux-armv6\native\libfnb_native.so">
+          <Link>runtimes\linux-armv6\native\libfnb_native.so</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>false</Pack>
+        </Content> -->
+        <Content Include="$(MSBuildThisFileDirectory)..\..\runtimes\linux-arm64\native\libfnb_native.so">
+          <Link>runtimes\linux-arm64\native\libfnb_native.so</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>false</Pack>
+        </Content>
+    </ItemGroup>
+
+    <!-- macOS -->
+    <!-- not supported because it sucks... -->
 </Project>
