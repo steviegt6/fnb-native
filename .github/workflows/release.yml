@@ -25,6 +25,7 @@ jobs:
                 for z in *.zip ; do
                   unzip "$z" -d "${z%.zip}"
                   rm "$z"
+                done
 
                 for d in */ ; do
                     mkdir ${d}native ;
