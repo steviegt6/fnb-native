@@ -32,7 +32,7 @@ jobs:
                     mv ${d}*fnb_native* ${d}native/ ;
                 done
             - name: Pack
-              run: dotnet pack -c Release -o pkg
+              run: dotnet pack package/FNB.Native.csproj -c Release -o pkg
             - name: Upload
               uses: actions/upload-artifact@v3
               with:
